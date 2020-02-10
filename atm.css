@@ -79,8 +79,8 @@ html, body {
   position: absolute;
   bottom: 0;
   box-shadow: 1px 1px 12px 0px rgba(0,0,0,0.3);
+  word-wrap: break-word;
 }
-
 .main > .atm .account .item .symbol {
   color: #F6006B;
   font-weight: 900;
@@ -173,3 +173,4 @@ html, body {
 .main > .atm > .action .keyboard .line > .action.gray {
  background-color: #abb3ce;
 }
+

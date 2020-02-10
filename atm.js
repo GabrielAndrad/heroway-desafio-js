@@ -1,4 +1,4 @@
-const cashResult = document.getElementById("bills-displayer");
+const result = document.getElementById("bills-displayer");
 const balance = document.getElementById("saldo");
 const value = document.getElementById("displayer");
 const clean = document.getElementById("clear");
@@ -17,39 +17,45 @@ function takeNumber() {
         value.value = value.value + item.innerHTML;
       }
     });
-   
   });
 }
 
-function withdrawMoney(requiredValue){
-  let validCash = [100, 50, 20, 10],
-      cashResult = [];
+takeNumber();
 
-  if(requiredValue && requiredValue > 0) {
-    while(requiredValue > 0) {
+function withdrawMoney(requiredValue) {
+  let validCash = [100, 50, 20, 10],
+    cashResult = [];
+
+  if (requiredValue && requiredValue > 0) {
+    while (requiredValue > 0) {
       for (let i = 0; i < validCash.length; i++) {
         let note = validCash[i];
-        if(requiredValue - note >= 0) {
+        if (requiredValue - note >= 0) {
           requiredValue -= note;
           cashResult.push(note);
           break;
-        } else if(i === validCash.length - 1 && requiredValue > 0) {
-            throw 'NoteUnavailableException';
+        } else if (i === validCash.length - 1 && requiredValue > 0) {
+          return  'VALOR INVÁLIDO';
         }
       }
     }
-  } else if(requiredValue <= 0) {
-    throw 'InvalidArgumentException';
+  } else if (requiredValue <= 0) {
+    return 'VALOR NULO';
   }
 
-  return console.log(cashResult);
+  return cashResult;
 }
 
-const clear = clean.addEventListener('click', () => {
+ clean.addEventListener('click', () => {
   value.value = "";
 })
 
+send.addEventListener('click', () =>{
+  result.innerHTML = withdrawMoney(value.value);;
 
-takeNumber();
+});
 
-send.addEventListener('click', withdrawMoney);
+
+
+
+
